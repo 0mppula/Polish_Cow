@@ -6,6 +6,7 @@ const grid = document.getElementById('cow-grid');
 const boxes = document.querySelectorAll('.box');
 const boxesArray = Array.from(boxes);
 const output = document.getElementById('output');
+let isAppActive = false;
 
 // Sound
 /* Song used in this website:
@@ -16,15 +17,14 @@ const music = new Audio('audio/cow.mp3');
 // Evenlisteners
 startBtn.addEventListener('click', appStart); /* starts app */
 window.addEventListener('keyup', appStop); /* stops timer and initializes app */
-
-// App initial state
-initialState();
+window.addEventListener('load', initialState); // App initial state
 
 // Cow Dance Loop
 setInterval(spawnCows, 123510); // 123.5s 2min 3.5s || 4min 7s
 
 // Start App
 function appStart() {
+	isAppActive = true;
 	initialCow();
 	spawnCows();
 	startTimer();
@@ -42,6 +42,7 @@ function appStart() {
 function appStop(e) {
 	let userInput = e.keyCode;
 	if (userInput === 27) {
+		isAppActive = false;
 		stopTimer();
 		initialState();
 		buttonContainer.style.display = 'flex';
@@ -85,6 +86,7 @@ function initialState() {
 // Cow dance logic
 function spawnCows() {
 	let delay = 13501;
+
 	setTimeout(() => {
 		twoColGrid(), spawnCow();
 	}, delay); // 2cows
