@@ -76,6 +76,12 @@ function spawnCows(amount) {
 	}
 }
 
+function despawnCows(amount) {
+	for (let i = 0; i < amount; i++) {
+		grid.children[0].remove();
+	}
+}
+
 // App initial state
 function initialState() {
 	grid.innerHTML = '';
@@ -86,10 +92,11 @@ function initialState() {
 
 // Cow dance logic
 function animateCows() {
-	let delay = 3000;
+	let delay = 1000;
 
 	setTimeout(() => {
-		twoColGrid(), spawnCows(1);
+		twoColGrid();
+		spawnCows(1);
 	}, delay); // 2cows
 	setTimeout(() => {
 		spawnCows(2);
@@ -108,16 +115,22 @@ function animateCows() {
 	}, delay * 5); // 32 cows
 	setTimeout(() => {
 		removeEightColGrid();
-	}, delay * 6); // 8 cows
+		despawnCows(16);
+	}, delay * 6); // 16 cows
 	setTimeout(() => {
 		removeFourColGrid();
-	}, delay * 7); // 4 cows
+		despawnCows(8);
+	}, delay * 7); // 8 cows
 	setTimeout(() => {
 		removeTwoColGrid();
-	}, delay * 8); // 2 cows
+		despawnCows(4);
+	}, delay * 8); // 4 cows
+	setTimeout(() => {
+		despawnCows(2);
+	}, delay * 9); // 2 cows
 	setTimeout(() => {
 		removeGrid();
-	}, delay * 9); // 1 cow
+	}, delay * 10); // 1 cow
 }
 
 function twoColGrid() {
@@ -136,23 +149,14 @@ function eightColGrid() {
 function removeEightColGrid() {
 	grid.style.cssText =
 		'grid-template-columns: repeat(4, 1fr);, grid-template-rows: repeat(2, 1fr);';
-	for (let i = 0; i <= 15; i++) {
-		grid.children[0].remove();
-	}
 } // 4x2
 
 function removeFourColGrid() {
 	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
-	for (let i = 0; i <= 7; i++) {
-		grid.children[0].remove();
-	}
 } // 2x2
 
 function removeTwoColGrid() {
 	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
-	for (let i = 0; i <= 1; i++) {
-		grid.children[0].remove();
-	}
 } // 2x1
 
 function removeGrid() {
