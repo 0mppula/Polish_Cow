@@ -42,9 +42,6 @@ function appStart() {
 	let body = document.body;
 	body.style.backgroundImage = 'none';
 	startDance();
-	setTimeout(() => {
-		output.style.display = 'block';
-	}, 500);
 }
 
 // Kill App
@@ -57,20 +54,9 @@ function appStop(e) {
 		buttonContainer.style.display = 'flex';
 		music.pause();
 		music.currentTime = 0;
-		window.clearTimeout();
+		animateCows();
 		stopDance();
-		console.log('timer reset, app restarted');
 	}
-}
-
-// first cow
-function initialCow() {
-	let newCow = document.createElement('div');
-	newCow.classList.add('box');
-	/* Dancing cow GIF by:
-	https://tenor.com/es/ver/cow-dancing-animal-gif-16570099 */
-	newCow.innerHTML = `<img src="images/cow_right.gif" alt="">`;
-	grid.append(newCow);
 }
 
 // spawn cows
@@ -98,51 +84,60 @@ function initialState() {
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 }
 
+let timeOuts = [];
+let counter = 1;
+
 // Cow dance logic
 function animateCows() {
 	let delay = 1000;
 
-	setTimeout(() => {
-		twoColGrid();
-		spawnCows(1);
-	}, delay); // 2cows
-	setTimeout(() => {
-		spawnCows(2);
-	}, delay * 2); // 4 cows
-	setTimeout(() => {
-		fourColGrid();
-		spawnCows(4);
-	}, delay * 3); // 8 cows
-	setTimeout(() => {
-		eightColGrid();
-		spawnCows(8);
-	}, delay * 4); // 16 cows
-	setTimeout(() => {
-		eightColGrid();
-		spawnCows(16);
-	}, delay * 5); // 32 cows
-	setTimeout(() => {
-		removeEightColGrid();
-		despawnCows(16);
-	}, delay * 6); // 16 cows
-	setTimeout(() => {
-		removeFourColGrid();
-		despawnCows(8);
-	}, delay * 7); // 8 cows
-	setTimeout(() => {
-		removeTwoColGrid();
-		despawnCows(4);
-	}, delay * 8); // 4 cows
-	setTimeout(() => {
-		despawnCows(2);
-	}, delay * 9); // 2 cows
-	setTimeout(() => {
-		removeGrid();
-	}, delay * 10); // 1 cow
+	if (isAppActive) {
+		timeOuts[0] = setTimeout(() => {
+			twoColGrid();
+			spawnCows(1);
+		}, delay); // 2cows
+		timeOuts[1] = setTimeout(() => {
+			spawnCows(2);
+		}, delay * 2); // 4 cows
+		timeOuts[2] = setTimeout(() => {
+			fourColGrid();
+			spawnCows(4);
+		}, delay * 3); // 8 cows
+		timeOuts[3] = setTimeout(() => {
+			eightColGrid();
+			spawnCows(8);
+		}, delay * 4); // 16 cows
+		timeOuts[4] = setTimeout(() => {
+			eightColGrid();
+			spawnCows(16);
+		}, delay * 5); // 32 cows
+		timeOuts[5] = setTimeout(() => {
+			removeEightColGrid();
+			despawnCows(16);
+		}, delay * 6); // 16 cows
+		timeOuts[6] = setTimeout(() => {
+			removeFourColGrid();
+			despawnCows(8);
+		}, delay * 7); // 8 cows
+		timeOuts[7] = setTimeout(() => {
+			removeTwoColGrid();
+			despawnCows(4);
+		}, delay * 8); // 4 cows
+		timeOuts[8] = setTimeout(() => {
+			despawnCows(2);
+		}, delay * 9); // 2 cows
+		timeOuts[9] = setTimeout(() => {
+			removeGrid();
+		}, delay * 10); // 1 cow
+	} else {
+		timeOuts.forEach((timeOut) => {
+			clearTimeout(timeOut);
+		});
+	}
 }
 
 function twoColGrid() {
-	grid.style.display = 'grid';
+	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
 } // 2x2
 
 function fourColGrid() {
@@ -181,10 +176,10 @@ let time = 0;
 
 // Start timer
 function startTimer() {
+	output.style.display = 'block';
 	if (isRunning == false) {
 		isRunning = true;
 		increment();
-		console.log('timer running');
 	}
 }
 
