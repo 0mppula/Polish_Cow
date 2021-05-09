@@ -79,6 +79,7 @@ function initialState() {
 	grid.innerHTML = '';
 	grid.style.display = 'none';
 	output.style.display = 'none';
+	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 }
 
 // Cow dance logic
@@ -109,8 +110,6 @@ function spawnCows() {
 		removeGrid();
 	}, delay * 8); // 1 cow
 }
-
-function timedAnimation(delay) {}
 
 function twoColGrid() {
 	grid.style.display = 'grid';

@@ -9,7 +9,7 @@
 }
 
 body {
-	background-image: radial-gradient(#fff, #aaa);
+	background: radial-gradient(#fff, #aaa);
 }
 
 .button-container {
