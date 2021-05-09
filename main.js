@@ -7,6 +7,7 @@ const boxes = document.querySelectorAll('.box');
 const boxesArray = Array.from(boxes);
 const output = document.getElementById('output');
 let isAppActive = false;
+let interval;
 
 // Sound
 /* Song used in this website:
@@ -20,7 +21,13 @@ window.addEventListener('keyup', appStop); /* stops timer and initializes app */
 window.addEventListener('load', initialState); // App initial state
 
 // Cow Dance Loop
-setInterval(animateCows, 123510); // 123.5s 2min 3.5s || 4min 7s
+function startDance() {
+	// interval = setInterval(animateCows, 123510); // 123.5s 2min 3.5s || 4min 7s
+	interval = setInterval(animateCows, 10000); // 123.5s 2min 3.5s || 4min 7s
+}
+function stopDance() {
+	clearInterval(interval);
+}
 
 // Start App
 function appStart() {
@@ -34,6 +41,7 @@ function appStart() {
 	music.play();
 	let body = document.body;
 	body.style.backgroundImage = 'none';
+	startDance();
 	setTimeout(() => {
 		output.style.display = 'block';
 	}, 500);
@@ -50,6 +58,7 @@ function appStop(e) {
 		music.pause();
 		music.currentTime = 0;
 		window.clearTimeout();
+		stopDance();
 		console.log('timer reset, app restarted');
 	}
 }
@@ -85,7 +94,6 @@ function despawnCows(amount) {
 // App initial state
 function initialState() {
 	grid.innerHTML = '';
-	grid.style.display = 'none';
 	output.style.display = 'none';
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 }
