@@ -36,9 +36,7 @@ function appStart() {
 	populateGrid(1, 1);
 	animateCows();
 	startTimer();
-	buttonContainer.style.display = 'none';
-	let body = document.body;
-	body.style.backgroundImage = 'none';
+	toggleUI();
 	startDance();
 }
 
@@ -50,7 +48,7 @@ function appStop(e) {
 		toggleMusic();
 		stopTimer();
 		initialState();
-		buttonContainer.style.display = 'flex';
+		toggleUI();
 		animateCows();
 		stopDance();
 	}
@@ -63,6 +61,16 @@ function toggleMusic() {
 	} else {
 		music.pause();
 		music.currentTime = 0;
+	}
+}
+
+function toggleUI() {
+	if (isAppActive) {
+		let body = document.body;
+		buttonContainer.style.display = 'none';
+		body.style.backgroundImage = 'none';
+	} else {
+		buttonContainer.style.display = 'flex';
 	}
 }
 
