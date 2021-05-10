@@ -93,38 +93,31 @@ function animateCows() {
 
 	if (isAppActive) {
 		timeOuts[0] = setTimeout(() => {
-			twoColGrid();
-			spawnCows(1);
+			populateGrid(2, 1);
 		}, delay); // 2cows
 		timeOuts[1] = setTimeout(() => {
-			spawnCows(2);
+			populateGrid(2, 2);
 		}, delay * 2); // 4 cows
 		timeOuts[2] = setTimeout(() => {
-			fourColGrid();
-			spawnCows(4);
+			populateGrid(4, 4);
 		}, delay * 3); // 8 cows
 		timeOuts[3] = setTimeout(() => {
-			eightColGrid();
-			spawnCows(8);
+			populateGrid(8, 8);
 		}, delay * 4); // 16 cows
 		timeOuts[4] = setTimeout(() => {
-			eightColGrid();
-			spawnCows(16);
+			populateGrid(8, 16);
 		}, delay * 5); // 32 cows
 		timeOuts[5] = setTimeout(() => {
-			removeEightColGrid();
-			despawnCows(16);
+			dePopulateGrid(8, 16);
 		}, delay * 6); // 16 cows
 		timeOuts[6] = setTimeout(() => {
-			removeFourColGrid();
-			despawnCows(8);
+			dePopulateGrid(4, 8);
 		}, delay * 7); // 8 cows
 		timeOuts[7] = setTimeout(() => {
-			removeTwoColGrid();
-			despawnCows(4);
+			dePopulateGrid(2, 4);
 		}, delay * 8); // 4 cows
 		timeOuts[8] = setTimeout(() => {
-			despawnCows(2);
+			dePopulateGrid(2, 2);
 		}, delay * 9); // 2 cows
 		timeOuts[9] = setTimeout(() => {
 			removeGrid();
@@ -136,31 +129,15 @@ function animateCows() {
 	}
 }
 
-function twoColGrid() {
-	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
-} // 2x2
+function populateGrid(columns, cows) {
+	grid.style.cssText = `grid-template-columns: repeat(${columns}, 1fr);`;
+	spawnCows(cows);
+}
 
-function fourColGrid() {
-	grid.style.cssText =
-		'grid-template-columns: repeat(4, 1fr);, grid-template-rows: repeat(2, 1fr);';
-} // 4x2
-
-function eightColGrid() {
-	grid.style.cssText = 'grid-template-columns: repeat(4, 1fr);';
-} // 4x4
-
-function removeEightColGrid() {
-	grid.style.cssText =
-		'grid-template-columns: repeat(4, 1fr);, grid-template-rows: repeat(2, 1fr);';
-} // 4x2
-
-function removeFourColGrid() {
-	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
-} // 2x2
-
-function removeTwoColGrid() {
-	grid.style.cssText = 'grid-template-columns: repeat(2, 1fr);';
-} // 2x1
+function dePopulateGrid(columns, cows) {
+	grid.style.cssText = `grid-template-columns: repeat(${columns}, 1fr);`;
+	despawnCows(cows);
+}
 
 function removeGrid() {
 	grid.style.display = 'block';
