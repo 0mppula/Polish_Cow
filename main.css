@@ -13,11 +13,18 @@ body {
 }
 
 .button-container {
-	min-height: 100vh;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: 0.3s ease;
+	pointer-events: auto;
+}
+
+.button-container.hide {
+	opacity: 0;
+	pointer-events: none;
 }
 
 #start-btn {
@@ -74,6 +81,7 @@ body {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
+	user-select: none;
 	animation: openUI 1s ease-in-out;
 }
 

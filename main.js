@@ -67,10 +67,10 @@ function toggleMusic() {
 function toggleUI() {
 	if (isAppActive) {
 		let body = document.body;
-		buttonContainer.style.display = 'none';
+		buttonContainer.classList.toggle('hide', true);
 		body.style.backgroundImage = 'none';
 	} else {
-		buttonContainer.style.display = 'flex';
+		initialState();
 	}
 }
 
@@ -97,6 +97,7 @@ function initialState() {
 	grid.innerHTML = '';
 	output.style.display = 'none';
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
+	buttonContainer.classList.toggle('hide', false);
 }
 
 let timeOuts = [];
