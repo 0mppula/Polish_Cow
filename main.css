@@ -110,13 +110,14 @@ body {
 	top: 93vh;
 	left: 50vw;
 	transform: translateX(-50%);
-	pointer-events: auto;
 	transition: 0.3s ease;
-}
-
-.timer.hide {
 	opacity: 0;
 	pointer-events: none;
+}
+
+.timer.show {
+	pointer-events: auto;
+	opacity: 1;
 }
 
 @keyframes openUI {

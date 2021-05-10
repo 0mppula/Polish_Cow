@@ -1,4 +1,5 @@
 // Variables
+const body = document.body;
 const buttonContainer = document.querySelector('.button-container');
 const startBtn = document.getElementById('start-btn');
 const container = document.querySelector('.container');
@@ -67,7 +68,6 @@ function toggleMusic() {
 
 function toggleUI() {
 	if (isAppActive) {
-		let body = document.body;
 		buttonContainer.classList.toggle('hide', true);
 		body.style.backgroundImage = 'none';
 	} else {
@@ -96,8 +96,8 @@ function despawnCows(amount) {
 // App initial state
 function initialState() {
 	grid.innerHTML = '';
-	timer.classList.toggle('hide', true);
-	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
+	timer.classList.toggle('show', false);
+	body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 	buttonContainer.classList.toggle('hide', false);
 }
 
@@ -140,7 +140,7 @@ let isRunning = false;
 let time = 0;
 
 function startTimer() {
-	timer.classList.toggle('hide', false);
+	timer.classList.toggle('show', true);
 	if (isRunning == false) {
 		isRunning = true;
 		increment();
