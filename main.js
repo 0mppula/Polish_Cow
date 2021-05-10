@@ -92,36 +92,16 @@ function animateCows() {
 	let delay = 1000;
 
 	if (isAppActive) {
-		timeOuts[0] = setTimeout(() => {
-			populateGrid(2, 1);
-		}, delay); // 2cows
-		timeOuts[1] = setTimeout(() => {
-			populateGrid(2, 2);
-		}, delay * 2); // 4 cows
-		timeOuts[2] = setTimeout(() => {
-			populateGrid(4, 4);
-		}, delay * 3); // 8 cows
-		timeOuts[3] = setTimeout(() => {
-			populateGrid(8, 8);
-		}, delay * 4); // 16 cows
-		timeOuts[4] = setTimeout(() => {
-			populateGrid(8, 16);
-		}, delay * 5); // 32 cows
-		timeOuts[5] = setTimeout(() => {
-			dePopulateGrid(8, 16);
-		}, delay * 6); // 16 cows
-		timeOuts[6] = setTimeout(() => {
-			dePopulateGrid(4, 8);
-		}, delay * 7); // 8 cows
-		timeOuts[7] = setTimeout(() => {
-			dePopulateGrid(2, 4);
-		}, delay * 8); // 4 cows
-		timeOuts[8] = setTimeout(() => {
-			dePopulateGrid(2, 2);
-		}, delay * 9); // 2 cows
-		timeOuts[9] = setTimeout(() => {
-			removeGrid();
-		}, delay * 10); // 1 cow
+		timeOuts[0] = setTimeout(() => populateGrid(2, 1), delay); // 2cows
+		timeOuts[1] = setTimeout(() => populateGrid(2, 2), delay * 2); // 4 cows
+		timeOuts[2] = setTimeout(() => populateGrid(4, 4), delay * 3); // 8 cows
+		timeOuts[3] = setTimeout(() => populateGrid(8, 8), delay * 4); // 16 cows
+		timeOuts[4] = setTimeout(() => populateGrid(8, 16), delay * 5); // 32 cows
+		timeOuts[5] = setTimeout(() => dePopulateGrid(8, 16), delay * 6); // 16 cows
+		timeOuts[6] = setTimeout(() => dePopulateGrid(4, 8), delay * 7); // 8 cows
+		timeOuts[7] = setTimeout(() => dePopulateGrid(2, 4), delay * 8); // 4 cows
+		timeOuts[8] = setTimeout(() => dePopulateGrid(2, 2), delay * 9); // 2 cows
+		timeOuts[9] = setTimeout(() => removeGrid(), delay * 10); // 1 cow
 	} else {
 		timeOuts.forEach((timeOut) => {
 			clearTimeout(timeOut);
