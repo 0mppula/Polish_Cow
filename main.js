@@ -31,14 +31,12 @@ function stopDance() {
 
 // Start App
 function appStart() {
-	grid.style.display = 'block';
 	isAppActive = true;
-	spawnCows(1);
+	toggleMusic();
+	populateGrid(1, 1);
 	animateCows();
 	startTimer();
 	buttonContainer.style.display = 'none';
-	music.loop = true; // loop music
-	music.play();
 	let body = document.body;
 	body.style.backgroundImage = 'none';
 	startDance();
@@ -49,13 +47,22 @@ function appStop(e) {
 	let userInput = e.keyCode;
 	if (userInput === 27) {
 		isAppActive = false;
+		toggleMusic();
 		stopTimer();
 		initialState();
 		buttonContainer.style.display = 'flex';
-		music.pause();
-		music.currentTime = 0;
 		animateCows();
 		stopDance();
+	}
+}
+
+function toggleMusic() {
+	if (isAppActive) {
+		music.loop = true; // loop music
+		music.play();
+	} else {
+		music.pause();
+		music.currentTime = 0;
 	}
 }
 
@@ -84,9 +91,9 @@ function initialState() {
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 }
 
+let timeOuts = [];
 // Cow dance logic
 function animateCows() {
-	let timeOuts = [];
 	let delay = 1000;
 
 	if (isAppActive) {
