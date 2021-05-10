@@ -103,14 +103,20 @@ body {
 	max-width: 100%;
 }
 
-#timer {
+.timer {
 	font-size: 2rem;
 	color: #1b1b1b;
 	position: absolute;
 	top: 93vh;
 	left: 50vw;
 	transform: translateX(-50%);
-	animation: openUI 3s ease-in;
+	pointer-events: auto;
+	transition: 0.3s ease;
+}
+
+.timer.hide {
+	opacity: 0;
+	pointer-events: none;
 }
 
 @keyframes openUI {

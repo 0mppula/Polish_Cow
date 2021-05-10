@@ -5,6 +5,7 @@ const container = document.querySelector('.container');
 const grid = document.getElementById('cow-grid');
 const boxes = document.querySelectorAll('.box');
 const boxesArray = Array.from(boxes);
+const timer = document.querySelector('.timer');
 const output = document.getElementById('output');
 let isAppActive = false;
 let interval;
@@ -95,7 +96,7 @@ function despawnCows(amount) {
 // App initial state
 function initialState() {
 	grid.innerHTML = '';
-	output.style.display = 'none';
+	timer.classList.toggle('hide', true);
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 	buttonContainer.classList.toggle('hide', false);
 }
@@ -139,7 +140,7 @@ let isRunning = false;
 let time = 0;
 
 function startTimer() {
-	output.style.display = 'block';
+	timer.classList.toggle('hide', false);
 	if (isRunning == false) {
 		isRunning = true;
 		increment();
