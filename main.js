@@ -84,11 +84,9 @@ function initialState() {
 	document.body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 }
 
-let timeOuts = [];
-let counter = 1;
-
 // Cow dance logic
 function animateCows() {
+	let timeOuts = [];
 	let delay = 1000;
 
 	if (isAppActive) {
@@ -101,13 +99,14 @@ function animateCows() {
 		timeOuts[6] = setTimeout(() => dePopulateGrid(4, 8), delay * 7); // 8 cows
 		timeOuts[7] = setTimeout(() => dePopulateGrid(2, 4), delay * 8); // 4 cows
 		timeOuts[8] = setTimeout(() => dePopulateGrid(2, 2), delay * 9); // 2 cows
-		timeOuts[9] = setTimeout(() => removeGrid(), delay * 10); // 1 cow
+		timeOuts[9] = setTimeout(() => dePopulateGrid(1, 1), delay * 10); // 1 cow
 	} else {
 		timeOuts.forEach((timeOut) => {
 			clearTimeout(timeOut);
 		});
 	}
 }
+// End Cow dance logic
 
 function populateGrid(columns, cows) {
 	grid.style.cssText = `grid-template-columns: repeat(${columns}, 1fr);`;
@@ -119,19 +118,10 @@ function dePopulateGrid(columns, cows) {
 	despawnCows(cows);
 }
 
-function removeGrid() {
-	grid.style.display = 'block';
-	for (let i = 0; i <= 0; i++) {
-		grid.children[0].remove();
-	}
-} // 1
-// End Cow dance logic
-
 // Timer
 let isRunning = false;
 let time = 0;
 
-// Start timer
 function startTimer() {
 	output.style.display = 'block';
 	if (isRunning == false) {
@@ -140,7 +130,6 @@ function startTimer() {
 	}
 }
 
-// Stop timer
 function stopTimer() {
 	isRunning = false;
 	time = -1;
