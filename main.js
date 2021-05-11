@@ -24,8 +24,7 @@ window.addEventListener('load', initialState); // App initial state
 
 // Cow Dance Loop
 function startDance() {
-	// interval = setInterval(animateCows, 123510); // 123.5s 2min 3.5s || 4min 7s
-	interval = setInterval(animateCows, 10000); // 123.5s 2min 3.5s || 4min 7s
+	interval = setInterval(animateCows, 50000); // 123.5s 2min 3.5s || 4min 7s
 }
 function stopDance() {
 	clearInterval(interval);
@@ -104,7 +103,7 @@ function initialState() {
 let timeOuts = [];
 // Cow dance logic
 function animateCows() {
-	let delay = 1000;
+	let delay = 5000;
 
 	if (isAppActive) {
 		timeOuts[0] = setTimeout(() => populateGrid(2, 1), delay); // 2cows
