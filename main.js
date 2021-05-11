@@ -7,7 +7,7 @@ const grid = document.getElementById('cow-grid');
 const boxes = document.querySelectorAll('.box');
 const boxesArray = Array.from(boxes);
 const timer = document.querySelector('.timer');
-const output = document.getElementById('output');
+const timerOutput = document.getElementById('timer-output');
 let isAppActive = false;
 let interval;
 
@@ -20,7 +20,6 @@ const music = new Audio('audio/cow.mp3');
 // Evenlisteners
 startBtn.addEventListener('click', appStart); /* starts app */
 window.addEventListener('keyup', appStop); /* stops timer and initializes app */
-window.addEventListener('load', initialState); // App initial state
 
 // Cow Dance Loop
 function startDance() {
@@ -149,7 +148,7 @@ function startTimer() {
 function stopTimer() {
 	isRunning = false;
 	time = -1;
-	output.innerHTML = '0:00:00:00';
+	timerOutput.innerHTML = '0:00:00:00';
 }
 
 function increment() {
@@ -166,7 +165,7 @@ function increment() {
 			if (secs < 10) {
 				secs = `0${secs}`;
 			}
-			output.innerHTML = `${hours}:${mins}:${secs}:${tenths}0`;
+			timerOutput.innerHTML = `${hours}:${mins}:${secs}:${tenths}0`;
 			increment();
 		}, 100);
 	}
