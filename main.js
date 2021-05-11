@@ -161,12 +161,12 @@ function increment() {
 			let secs = Math.floor((time / 10) % 60); // returns remainder when divided (always shows a number below 60)
 			let tenths = time % 10; // returns remainder when divided (always shows a number below 10)
 			if (mins < 10) {
-				mins = '0' + mins;
+				mins = `0${mins}`;
 			}
 			if (secs < 10) {
-				secs = '0' + secs;
+				secs = `0${secs}`;
 			}
-			output.innerHTML = hours + ':' + mins + ':' + secs + ':' + tenths + '0';
+			output.innerHTML = `${hours}:${mins}:${secs}:${tenths}0`;
 			increment();
 		}, 100);
 	}
