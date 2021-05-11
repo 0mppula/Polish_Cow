@@ -47,7 +47,6 @@ function appStop(e) {
 		isAppActive = false;
 		toggleMusic();
 		stopTimer();
-		initialState();
 		toggleUI();
 		animateCows();
 		stopDance();
@@ -68,6 +67,7 @@ function toggleUI() {
 	if (isAppActive) {
 		buttonContainer.classList.toggle('hide', true);
 		body.style.backgroundImage = 'none';
+		body.style.backgroundColor = '#fbfbfb';
 	} else {
 		initialState();
 	}
