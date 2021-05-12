@@ -2,16 +2,12 @@
 const body = document.body;
 const buttonContainer = document.querySelector('.button-container');
 const startBtn = document.getElementById('start-btn');
-const container = document.querySelector('.container');
 const grid = document.getElementById('cow-grid');
-const boxes = document.querySelectorAll('.box');
-const boxesArray = Array.from(boxes);
 const timer = document.querySelector('.timer');
 const timerOutput = document.getElementById('timer-output');
 let isAppActive = false;
 let interval;
 
-// Sound
 /* Song used in this website:
 Cypis - Gdzie jest biały węgorz ? (Zejście)
 https://www.youtube.com/watch?v=qrxv0JNVtgY&ab_channel=Cypisolo */
@@ -23,7 +19,7 @@ window.addEventListener('keyup', appStop); /* stops timer and initializes app */
 
 // Cow Dance Loop
 function startDance() {
-	interval = setInterval(animateCows, 50000); // 123.5s 2min 3.5s || 4min 7s
+	interval = setInterval(animateCows, 50000); // 50s
 }
 function stopDance() {
 	clearInterval(interval);
@@ -134,31 +130,31 @@ function dePopulateGrid(columns, cows) {
 }
 
 // Timer
-let isRunning = false;
-let time = 0;
+let isTimerRunning = false;
+let elapsedTime = 0; // 1 = 100ms
 
 function startTimer() {
 	timer.classList.toggle('show', true);
-	if (isRunning == false) {
-		isRunning = true;
+	if (isTimerRunning == false) {
+		isTimerRunning = true;
 		increment();
 	}
 }
 
 function stopTimer() {
-	isRunning = false;
-	time = -1;
+	isTimerRunning = false;
+	elapsedTime = -1;
 	timerOutput.innerHTML = '0:00:00:00';
 }
 
 function increment() {
-	if (isRunning == true) {
+	if (isTimerRunning == true) {
 		setTimeout(() => {
-			time++;
-			let hours = Math.floor(time / 10 / 60 / 60);
-			let mins = Math.floor(time / 10 / 60);
-			let secs = Math.floor((time / 10) % 60); // returns remainder when divided (always shows a number below 60)
-			let tenths = time % 10; // returns remainder when divided (always shows a number below 10)
+			elapsedTime++;
+			let hours = Math.floor(elapsedTime / 10 / 60 / 60);
+			let mins = Math.floor(elapsedTime / 10 / 60);
+			let secs = Math.floor((elapsedTime / 10) % 60); // returns remainder when divided (always shows a number below 60)
+			let tenths = elapsedTime % 10; // returns remainder when divided (always shows a number below 10)
 			if (mins < 10) {
 				mins = `0${mins}`;
 			}
