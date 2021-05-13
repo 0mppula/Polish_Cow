@@ -120,11 +120,21 @@ function animateCows() {
 // End Cow dance logic
 
 function populateGrid(columns, cows) {
+	if (window.innerWidth <= 768) {
+		if (columns > 2) {
+			columns = columns / 2;
+		} // small screens
+	}
 	grid.style.cssText = `grid-template-columns: repeat(${columns}, 1fr);`;
 	spawnCows(cows);
 }
 
 function dePopulateGrid(columns, cows) {
+	if (window.innerWidth <= 768) {
+		if (columns > 2) {
+			columns = columns / 2;
+		} // small screens
+	}
 	grid.style.cssText = `grid-template-columns: repeat(${columns}, 1fr);`;
 	despawnCows(cows);
 }
