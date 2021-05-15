@@ -11,4 +11,4 @@ so I decided to refactor the project and push it to Github.
 
 Feel are free to use this project for learning or entertainment purposes! 🙂  
 
-Link to [Dancing Polish Cow](https://csgo-weapons.netlify.app/) web application! 🐄
+Link to the [Dancing Polish Cow](https://csgo-weapons.netlify.app/) web application! 🐄
