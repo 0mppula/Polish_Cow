@@ -9,4 +9,6 @@ In spring of 2021, I decided to revisit this project and skim through it's code.
 how badly the code needed refactoring, considering the JavaScript file was rich in spaghetti code.  
 so I decided to refactor the project and push it to Github.
 
-Feel are free to use this project for learning or entertainment purposes! 🙂
+Feel are free to use this project for learning or entertainment purposes! 🙂  
+
+Link to [Dancing Polish Cow](https://csgo-weapons.netlify.app/) web application! 🐄
