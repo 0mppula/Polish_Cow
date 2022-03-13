@@ -9,12 +9,15 @@ const grid = document.getElementById('cow-grid');
 const timer = document.querySelector('.timer');
 const timerOutput = document.getElementById('timer-output');
 let isAppActive = false;
+
+// Timeouts
 let interval;
-let time;
+let timeOuts = [];
 // Timer
 let isTimerRunning = false;
+let time;
 let elapsedTime = 0; // 1 = 100ms
-let lastElapsedTime = 0;
+let lastElapsedTime = 0; // 1 = 100ms
 // Highscore
 let highscore = localStorage.getItem('highscore') || '0:00:00:00';
 let bestElapsedTime = localStorage.getItem('best-time') || 0;
@@ -123,7 +126,7 @@ function initialState() {
 	highscoreOutput.textContent = localStorage.getItem('highscore') || '0:00:00:00';
 }
 
-let timeOuts = [];
+
 // Cow dance logic
 function animateCows() {
 	let delay = 5000;
