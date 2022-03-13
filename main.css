@@ -22,6 +22,22 @@ body {
 	pointer-events: auto;
 }
 
+.high-score-container {
+	position: absolute;
+	top: min(2vmin, 5px);
+	left: min(2vmin, 5px);
+	background: #fff;
+	border-radius: 0.125rem;
+	padding: 0.35rem 0.5rem;
+	transition: 0.3s ease;
+	pointer-events: auto;
+	z-index: 10000;
+}
+
+.high-score-container.hide {
+	opacity: 0.33;
+	pointer-events: none;
+}
 .button-container.hide {
 	opacity: 0;
 	pointer-events: none;
@@ -31,7 +47,7 @@ body {
 	font-size: 2rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1rem;
-	padding: 1.5rem 4rem;
+	padding: 1rem 4rem;
 	color: #fff;
 	background-color: #1b1b1b;
 	border: none;
@@ -43,7 +59,7 @@ body {
 
 #start-btn .right-icon {
 	position: absolute;
-	top: 30%;
+	top: 26%;
 	right: 10%;
 	height: 36px;
 	width: 36px;
@@ -52,7 +68,7 @@ body {
 
 #start-btn .left-icon {
 	position: absolute;
-	top: 30%;
+	top: 26%;
 	left: 8%;
 	height: 36px;
 	width: 36px;
@@ -104,20 +120,47 @@ body {
 }
 
 .timer {
-	font-size: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1.5rem;
 	color: #1b1b1b;
 	position: absolute;
-	top: 93vh;
+	top: 100vh;
 	left: 50vw;
-	transform: translateX(-50%);
+	width: 100%;
+	transform: translate(-50%, -3rem);
 	transition: 0.3s ease;
 	opacity: 0;
 	pointer-events: none;
+	margin-bottom: 1rem;
 }
 
 .timer.show {
 	pointer-events: auto;
 	opacity: 1;
+}
+
+.timer > button {
+	cursor: pointer;
+	padding: 0.25rem 0.5rem;
+	transition: 0.15s ease;
+	color: #fff;
+	background-color: #1b1b1b;
+	border-radius: 0.35rem;
+	opacity: 0.75;
+	border: none;
+}
+
+.timer > button:hover {
+	color: #fff;
+	background: #f20f38;
+	opacity: 1;
+}
+
+.timer-output {
+	width: 110px;
 }
 
 @keyframes openUI {

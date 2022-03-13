@@ -1,12 +1,24 @@
 // Variables
 const body = document.body;
 const buttonContainer = document.querySelector('.button-container');
+const highscoreContainer = document.querySelector('.high-score-container');
+const highscoreOutput = document.querySelector('.high-score-output')
 const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
 const grid = document.getElementById('cow-grid');
 const timer = document.querySelector('.timer');
 const timerOutput = document.getElementById('timer-output');
 let isAppActive = false;
 let interval;
+let time;
+// Timer
+let isTimerRunning = false;
+let elapsedTime = 0; // 1 = 100ms
+let lastElapsedTime = 0;
+// Highscore
+let highscore = localStorage.getItem('highscore') || '0:00:00:00';
+let bestElapsedTime = localStorage.getItem('best-time') || 0;
+highscoreOutput.textContent = highscore
 
 /* Song used in this website:
 Cypis - Gdzie jest biały węgorz ? (Zejście)
@@ -15,6 +27,7 @@ const music = new Audio('audio/cow.mp3');
 
 // Evenlisteners
 startBtn.addEventListener('click', appStart); /* starts app */
+stopBtn.addEventListener('click', appStop); /* stops timer and initializes app */
 window.addEventListener('keyup', appStop); /* stops timer and initializes app */
 
 // Cow Dance Loop
@@ -39,10 +52,12 @@ function appStart() {
 // Kill App
 function appStop(e) {
 	let userInput = e.keyCode;
-	if (userInput === 27) {
+	let escClick = e.target.id === 'stop-btn';
+	if (userInput === 27 || escClick) {
 		isAppActive = false;
 		toggleMusic();
 		stopTimer();
+		saveHighscore();
 		toggleUI();
 		animateCows();
 		stopDance();
@@ -62,12 +77,23 @@ function toggleMusic() {
 function toggleUI() {
 	if (isAppActive) {
 		buttonContainer.classList.toggle('hide', true);
+		highscoreContainer.classList.toggle('hide', true);
+		highscoreOutput.textContent = localStorage.getItem('highscore') || '0:00:00:00';
 		body.style.backgroundImage = 'none';
 		body.style.backgroundColor = '#fbfbfb';
 	} else {
 		initialState();
 	}
 }
+
+const saveHighscore = () => {
+	if(lastElapsedTime > bestElapsedTime) {
+		bestElapsedTime = lastElapsedTime
+		localStorage.setItem('highscore', time);
+		localStorage.setItem('best-time', lastElapsedTime);
+	}
+};
+
 
 // spawn cows
 function spawnCows(amount) {
@@ -93,6 +119,8 @@ function initialState() {
 	timer.classList.toggle('show', false);
 	body.style.backgroundImage = 'radial-gradient(#fff, #aaa)';
 	buttonContainer.classList.toggle('hide', false);
+	highscoreContainer.classList.toggle('hide', false);
+	highscoreOutput.textContent = localStorage.getItem('highscore') || '0:00:00:00';
 }
 
 let timeOuts = [];
@@ -139,10 +167,6 @@ function dePopulateGrid(columns, cows) {
 	despawnCows(cows);
 }
 
-// Timer
-let isTimerRunning = false;
-let elapsedTime = 0; // 1 = 100ms
-
 function startTimer() {
 	timer.classList.toggle('show', true);
 	if (isTimerRunning == false) {
@@ -152,6 +176,7 @@ function startTimer() {
 }
 
 function stopTimer() {
+	lastElapsedTime = elapsedTime
 	isTimerRunning = false;
 	elapsedTime = -1;
 	timerOutput.innerHTML = '0:00:00:00';
@@ -171,7 +196,8 @@ function increment() {
 			if (secs < 10) {
 				secs = `0${secs}`;
 			}
-			timerOutput.innerHTML = `${hours}:${mins}:${secs}:${tenths}0`;
+			time = `${hours}:${mins}:${secs}:${tenths}0`;
+			timerOutput.innerHTML = time;
 			increment();
 		}, 100);
 	}
