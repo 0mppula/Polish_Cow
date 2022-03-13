@@ -2,7 +2,7 @@
 const body = document.body;
 const buttonContainer = document.querySelector('.button-container');
 const highscoreContainer = document.querySelector('.high-score-container');
-const highscoreOutput = document.querySelector('.high-score-output')
+const highscoreOutput = document.querySelector('.high-score-output');
 const startBtn = document.getElementById('start-btn');
 const stopBtn = document.getElementById('stop-btn');
 const grid = document.getElementById('cow-grid');
@@ -21,7 +21,7 @@ let lastElapsedTime = 0; // 1 = 100ms
 // Highscore
 let highscore = localStorage.getItem('highscore') || '0:00:00:00';
 let bestElapsedTime = localStorage.getItem('best-time') || 0;
-highscoreOutput.textContent = highscore
+highscoreOutput.textContent = highscore;
 
 /* Song used in this website:
 Cypis - Gdzie jest biały węgorz ? (Zejście)
@@ -90,13 +90,12 @@ function toggleUI() {
 }
 
 const saveHighscore = () => {
-	if(lastElapsedTime > bestElapsedTime) {
-		bestElapsedTime = lastElapsedTime
+	if (lastElapsedTime > bestElapsedTime) {
+		bestElapsedTime = lastElapsedTime;
 		localStorage.setItem('highscore', time);
 		localStorage.setItem('best-time', lastElapsedTime);
 	}
 };
-
 
 // spawn cows
 function spawnCows(amount) {
@@ -125,7 +124,6 @@ function initialState() {
 	highscoreContainer.classList.toggle('hide', false);
 	highscoreOutput.textContent = localStorage.getItem('highscore') || '0:00:00:00';
 }
-
 
 // Cow dance logic
 function animateCows() {
@@ -172,6 +170,7 @@ function dePopulateGrid(columns, cows) {
 
 function startTimer() {
 	timer.classList.toggle('show', true);
+	timer.scrollIntoView({ behavior: 'smooth', block: 'end' });
 	if (isTimerRunning == false) {
 		isTimerRunning = true;
 		increment();
@@ -179,7 +178,7 @@ function startTimer() {
 }
 
 function stopTimer() {
-	lastElapsedTime = elapsedTime
+	lastElapsedTime = elapsedTime;
 	isTimerRunning = false;
 	elapsedTime = -1;
 	timerOutput.innerHTML = '0:00:00:00';
