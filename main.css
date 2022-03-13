@@ -24,8 +24,8 @@ body {
 
 .high-score-container {
 	position: absolute;
-	top: min(2vmin, 5px);
-	left: min(2vmin, 5px);
+	top: 10px;
+	left: 10px;
 	background: #fff;
 	border-radius: 0.125rem;
 	padding: 0.35rem 0.5rem;
@@ -37,6 +37,7 @@ body {
 .high-score-container.hide {
 	opacity: 0.33;
 	pointer-events: none;
+	background-color: transparent;
 }
 .button-container.hide {
 	opacity: 0;
