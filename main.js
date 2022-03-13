@@ -170,7 +170,11 @@ function dePopulateGrid(columns, cows) {
 
 function startTimer() {
 	timer.classList.toggle('show', true);
-	timer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+	window.scrollTo({
+		top: window.innerHeight,
+		left: 0,
+		behavior: 'smooth'
+	});
 	if (isTimerRunning == false) {
 		isTimerRunning = true;
 		increment();
